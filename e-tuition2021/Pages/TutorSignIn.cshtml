@@ -1,0 +1,40 @@
+﻿@page
+@using e_tuition2021.Models
+@model e_tuition2021.Pages.TutorSignInModel
+@{
+      ViewData["Title"] = "Tutor account";
+}
+
+<!--Tutor Sign In-->
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Message</h1>
+    
+<form method="post" class="mx-auto" style="width:200px">
+    <h2>Tutor Login</h2>
+        <p class="col-sm-2">
+            <label>First Name</label>
+            <input type="text" asp-for="Tutor.FirstName" required="true" placeholder="Enter your name" />
+        </p>
+
+        <p class="col-sm-2">
+            <label>Last name</label>
+            <input type="text" asp-for="Tutor.LastName" required="true" placeholder="Enter your name" />
+        </p>
+
+        <p class="col-sm-2">
+            <label>Email</label>
+            <input type="email" name="Email" required="true" placeholder="Enter your email address" />
+        </p>
+
+        <p class="col-sm-2">
+            <button type="submit" class="btn-btn-primary">
+                Login
+            </button>
+        </p>
+    </form>
+</div>
+
+<p class="col-sm-12">
+    @ViewData["Message"]
+</p>
