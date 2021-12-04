@@ -12,15 +12,17 @@ namespace e_tuition2021.Data
             : base(options)
         {
         }
-        //public DbSet<Person> People { get; set; }
+        public DbSet<Person> People { get; set; }
 
-        //public DbSet<Staff> Staff { get; set; }
+        public DbSet<Student> Students { get; set; }
 
-        //public DbSet<Tutor> Tutors { get; set; }
+        public DbSet<Staff> Staff { get; set; }
 
-        //public DbSet<TimeSlot> TimeSlot { get; set; }
+        public DbSet<Tutor> Tutors { get; set; }
 
-        //public DbSet<Lesson> Lessons { get; set; }
+        public DbSet<TimeSlot> TimeSlot { get; set; }
+
+        public DbSet<Lesson> Lessons { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
 
