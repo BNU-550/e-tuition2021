@@ -23,6 +23,8 @@ namespace e_tuition2021.Data
         //public DbSet<Lesson> Lessons { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<PaymentCard> PaymentCards { get; set; }
         
     }
 }
