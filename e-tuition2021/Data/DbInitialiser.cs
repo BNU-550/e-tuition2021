@@ -12,7 +12,7 @@ namespace e_tuition2021.Data
 
             AddPaymentCards(context);
 
-            Add
+            
         }
 
         private static void AddAddresses(ApplicationDbContext context)
@@ -47,6 +47,13 @@ namespace e_tuition2021.Data
             {
                 return;
             }
+
+            var paymentcards = new PaymentCard[]
+            {
+                new PaymentCard { CardNumber = "6745637892653678", SortCode = "09-87-89", ExpiryMonth=03/12, ExpiryYear=02/25 }
+
+                
+            };
         }
     }
 }
