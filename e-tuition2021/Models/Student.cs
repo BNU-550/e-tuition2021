@@ -6,6 +6,11 @@ namespace e_tuition2021.Models
 {
     public class Student
     {
+        public int StudentId { get; set; }
+
+        [Required, StringLength(20)]
+        public string StudentName { get; set; }
+
         [DisplayName("Key Stage"), Range(1, 4)]
         public int KeyStage { get; set; } = 4;
 
