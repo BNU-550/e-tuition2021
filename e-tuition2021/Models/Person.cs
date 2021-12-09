@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace e_tuition2021.Models
@@ -6,7 +7,7 @@ namespace e_tuition2021.Models
     public class Person
     {
         [Key]
-        public int Id { get; set; }
+        public int PersonId { get; set; }
 
         [StringLength(20), Required, DisplayName("First Name")]
         public string FirstName { get; set; }
@@ -17,9 +18,9 @@ namespace e_tuition2021.Models
         [StringLength(15), Required, DisplayName("Mobile")]
         public string MobileNumber { get; set; }
 
-        public int AddressId { get; set; }
+        public Nullable<int> AddressId { get; set; }
 
-        public int PaymentCardId { get; set; }
+        public Nullable<int> PaymentCardId { get; set; }
 
         //Navigation property
         public virtual Address Address { get; set; }

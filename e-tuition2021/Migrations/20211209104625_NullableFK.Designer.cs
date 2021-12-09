@@ -10,8 +10,8 @@ using e_tuition2021.Data;
 namespace e_tuition2021.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211204161648_SortCode")]
-    partial class SortCode
+    [Migration("20211209104625_NullableFK")]
+    partial class NullableFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -271,6 +271,118 @@ namespace e_tuition2021.Migrations
                     b.ToTable("PaymentCards");
                 });
 
+            modelBuilder.Entity("e_tuition2021.Models.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("MobileNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int?>("PaymentCardId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("PaymentCardId");
+
+                    b.ToTable("People");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("KeyStage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TutorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("TutorId");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Staff", b =>
+                {
+                    b.HasBaseType("e_tuition2021.Models.Person");
+
+                    b.Property<string>("JobTitle")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("money");
+
+                    b.HasDiscriminator().HasValue("Staff");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Tutor", b =>
+                {
+                    b.HasBaseType("e_tuition2021.Models.Person");
+
+                    b.Property<string>("Bio")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("Cost")
+                        .HasColumnType("money");
+
+                    b.Property<DateTime>("DbsCheck")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("ImageURL")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("PGCE")
+                        .HasColumnType("bit");
+
+                    b.HasDiscriminator().HasValue("Tutor");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -320,6 +432,38 @@ namespace e_tuition2021.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Person", b =>
+                {
+                    b.HasOne("e_tuition2021.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.HasOne("e_tuition2021.Models.PaymentCard", "PaymentCard")
+                        .WithMany()
+                        .HasForeignKey("PaymentCardId");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("PaymentCard");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Student", b =>
+                {
+                    b.HasOne("e_tuition2021.Models.Person", "Parent")
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("e_tuition2021.Models.Person", "Tutor")
+                        .WithMany()
+                        .HasForeignKey("TutorId");
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("Tutor");
                 });
 #pragma warning restore 612, 618
         }

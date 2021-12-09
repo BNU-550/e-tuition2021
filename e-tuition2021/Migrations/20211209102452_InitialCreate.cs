@@ -67,7 +67,7 @@ namespace e_tuition2021.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CardNumber = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
-                    SortCode = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
+                    SortCode = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     ExpiryMonth = table.Column<int>(type: "int", nullable: false),
                     ExpiryYear = table.Column<int>(type: "int", nullable: false)
                 },
@@ -182,6 +182,71 @@ namespace e_tuition2021.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "People",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false),
+                    PaymentCardId = table.Column<int>(type: "int", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salary = table.Column<decimal>(type: "money", nullable: true),
+                    JobTitle = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    DbsCheck = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Degree = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    PGCE = table.Column<bool>(type: "bit", nullable: true),
+                    ImageURL = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Bio = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Cost = table.Column<decimal>(type: "money", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_People", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_People_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_People_PaymentCards_PaymentCardId",
+                        column: x => x.PaymentCardId,
+                        principalTable: "PaymentCards",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    KeyStage = table.Column<int>(type: "int", nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: false),
+                    TutorId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Students_People_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Students_People_TutorId",
+                        column: x => x.TutorId,
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -220,13 +285,30 @@ namespace e_tuition2021.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_People_AddressId",
+                table: "People",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_People_PaymentCardId",
+                table: "People",
+                column: "PaymentCardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_ParentId",
+                table: "Students",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Students_TutorId",
+                table: "Students",
+                column: "TutorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Addresses");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -243,13 +325,22 @@ namespace e_tuition2021.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "PaymentCards");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "People");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "PaymentCards");
         }
     }
 }

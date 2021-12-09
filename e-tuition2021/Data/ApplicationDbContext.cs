@@ -20,9 +20,9 @@ namespace e_tuition2021.Data
 
         public DbSet<Tutor> Tutors { get; set; }
 
-        public DbSet<TimeSlot> TimeSlot { get; set; }
+        //public DbSet<TimeSlot> TimeSlot { get; set; }
 
-        public DbSet<Lesson> Lessons { get; set; }
+        //public DbSet<Lesson> Lessons { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
 

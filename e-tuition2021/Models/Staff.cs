@@ -6,9 +6,6 @@ namespace e_tuition2021.Models
 {
     public class Staff : Person
     {
-        [Key]
-        public int Id { get; set; }
-
         [DataType(DataType.Currency), Required]
         [Column(TypeName = "money")]
         public decimal Salary { get; set; }
