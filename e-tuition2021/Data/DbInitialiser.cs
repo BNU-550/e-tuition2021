@@ -133,7 +133,7 @@ namespace e_tuition2021.Data
             {
                 new Tutor 
                 {
-                    AddressId = 1,
+                    AddressId = 11,
                     PaymentCardId = 1,
                     FirstName = "Bob",
                     LastName = "Miles",
@@ -166,7 +166,16 @@ namespace e_tuition2021.Data
 
             var staff = new Staff[]
             {
-                new Staff {JobTitle="Lead Programmer", Salary=50000, AddressId=11, PaymentCardId=1},
+                new Staff 
+                {
+                    FirstName = "Gita",
+                    LastName = "Patel",
+                    MobileNumber = "07981234765",
+                    JobTitle = "Lead Programmer", 
+                    Salary = 50000, 
+                    AddressId = 6, 
+                    PaymentCardId = 1
+                },
                 new Staff {JobTitle="Designer", Salary=20000},
                 new Staff {JobTitle="Project Manager", Salary=15000},
                 new Staff {JobTitle="Technician", Salary=18000}
