@@ -144,13 +144,90 @@ namespace e_tuition2021.Data
                     DbsCheck=new DateTime(2018,7,12)
                 },
 
-                new Tutor {Degree="English", MobileNumber="056352673898843", Cost=15, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="Biology", MobileNumber="023456278645638",  Cost=15, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="Chemistry", MobileNumber="017845537284563", Cost=15, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="Physics", MobileNumber="045647783954623",  Cost=19, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="Maths", MobileNumber="089465367992345", Cost=20, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="English", MobileNumber="034566273564825", Cost=15, PGCE=true, DbsCheck=new DateTime(2018,7,12)},
-                new Tutor {Degree="Computing", MobileNumber="0564738263728", Cost=20, PGCE=true, DbsCheck=new DateTime(2018,7,12)}
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=2,
+                    FirstName="Elif",
+                    LastName="Sharma",
+                    Degree="Bsc (Hons)English",
+                    MobileNumber="056352673898843",
+                    Cost=15,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2016,3,14)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=3,
+                    FirstName="Sammuel",
+                    LastName="Lennon",
+                    Degree="Hsc (Hons)Biology",
+                    MobileNumber="023456278645638",
+                    Cost=15,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2017,9,11)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=4,
+                    FirstName="Milada",
+                    LastName="Slavkov",
+                    Degree="Bsc (Hons)Chemistry",
+                    MobileNumber="017845537284563",
+                    Cost=15,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2019,10,1)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=5,
+                    FirstName="Nada",
+                    LastName="Beck",
+                    Degree="PHD Physics",
+                    MobileNumber="045647783954623",
+                    Cost=19,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2020,2,10)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=6,
+                    FirstName="Miksa",
+                    LastName="Linden",
+                    Degree="Bsc (Hons)Maths",
+                    MobileNumber="089465367992345",
+                    Cost=20,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2021,4,3)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=7,
+                    FirstName="Davor",
+                    LastName="Statham",
+                    Degree="Bsc (Hons)English",
+                    MobileNumber="034566273564825",
+                    Cost=15,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2018,9,29)
+                },
+                new Tutor
+                {
+                    AddressId=11,
+                    PaymentCardId=8,
+                    FirstName="Govad",
+                    LastName="Montgomery",
+                    Degree="PHD Computing",
+                    MobileNumber="0564738263728",
+                    Cost=20,
+                    PGCE=true,
+                    DbsCheck=new DateTime(2020,11,11)
+                }
             };
 
             context.Tutors.AddRange(tutor);
@@ -176,9 +253,36 @@ namespace e_tuition2021.Data
                     AddressId = 6, 
                     PaymentCardId = 1
                 },
-                new Staff {JobTitle="Designer", Salary=20000},
-                new Staff {JobTitle="Project Manager", Salary=15000},
-                new Staff {JobTitle="Technician", Salary=18000}
+                new Staff 
+                {
+                    FirstName="Jela",
+                    LastName="Williams",
+                    MobileNumber="03456278973",
+                    JobTitle="Designer", 
+                    Salary=20000,
+                    AddressId = 7,
+                    PaymentCardId = 1
+                },
+                new Staff 
+                {
+                    FirstName="Karpos",
+                    LastName="Esben",
+                    MobileNumber="06748536892",
+                    JobTitle="Project Manager", 
+                    Salary=15000,
+                    AddressId=8,
+                    PaymentCardId=1
+                },
+                new Staff 
+                {
+                    FirstName="Rudolf",
+                    LastName="Ruskin",
+                    MobileNumber="01439876634",
+                    JobTitle="Technician", 
+                    Salary=18000,
+                    AddressId=9,
+                    PaymentCardId=1
+                }
             };
 
             context.Staff.AddRange(staff);
@@ -220,16 +324,67 @@ namespace e_tuition2021.Data
 
             var students = new Student[]
             {
-                new Student {KeyStage=3, ParentId=1, TutorId=1},
-                new Student { KeyStage=4, ParentId=2, TutorId=2},
-                new Student { KeyStage=2, ParentId=3, TutorId=3},
-                new Student { KeyStage=1, ParentId=4, TutorId=4},
-                new Student { KeyStage=1, ParentId=5, TutorId=5},
-                new Student { KeyStage=2, ParentId=6, TutorId=6},
-                new Student { KeyStage=3, ParentId=7, TutorId=7},
-                new Student { KeyStage=4, ParentId=8, TutorId=8},
-                new Student { KeyStage=4, ParentId=9, TutorId=9},
-                new Student { KeyStage=3, ParentId=10, TutorId=10}
+                new Student 
+                {
+                    KeyStage=3, 
+                    ParentId=1, 
+                    TutorId=1
+                },
+
+                new Student 
+                {   
+                    KeyStage=4, 
+                    ParentId=2, 
+                    TutorId=2
+                },
+                new Student 
+                {
+                    KeyStage=2, 
+                    ParentId=3, 
+                    TutorId=3
+                },
+                new Student 
+                {
+                    KeyStage=1, 
+                    ParentId=4, 
+                    TutorId=4
+                },
+                new Student 
+                {
+                    KeyStage=1, 
+                    ParentId=5, 
+                    TutorId=5
+                },
+                new Student 
+                {
+                    KeyStage=2, 
+                    ParentId=6, 
+                    TutorId=6
+                },
+                new Student 
+                {
+                    KeyStage=3, 
+                    ParentId=7, 
+                    TutorId=7
+                },
+                new Student 
+                {
+                    KeyStage=4, 
+                    ParentId=8, 
+                    TutorId=8
+                },
+                new Student 
+                {
+                    KeyStage=4, 
+                    ParentId=9, 
+                    TutorId=9
+                },
+                new Student 
+                {
+                    KeyStage=3, 
+                    ParentId=10, 
+                    TutorId=10
+                }
             };
 
             context.Students.AddRange(students);
