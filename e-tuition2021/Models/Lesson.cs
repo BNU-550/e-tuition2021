@@ -12,7 +12,7 @@ namespace e_tuition2021.Models
     {
         public int LessonId { get; set; }
 
-        public int TimeSlotId { get; set; }
+        //public int TimeSlotId { get; set; }
 
         [Required, DisplayName("Parent")]
         public int PersonId { get; set; }
@@ -34,7 +34,7 @@ namespace e_tuition2021.Models
 
         //navigation property
 
-        public virtual TimeSlot TimeSlot { get; set; }
+        //public virtual TimeSlot TimeSlot { get; set; }
 
         public virtual Student Student { get; set; }
     }

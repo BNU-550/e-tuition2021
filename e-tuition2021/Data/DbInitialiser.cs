@@ -28,8 +28,10 @@ namespace e_tuition2021.Data
         /// <param name="context"></param>
         public static void Initialise(ApplicationDbContext context)
         {
+            //address id = 31-40
             AddAddresses(context);
 
+            //payment id = 34-44 
             AddPaymentCards(context);
 
             AddPeople(context);
@@ -68,7 +70,7 @@ namespace e_tuition2021.Data
             };
 
             context.Addresses.AddRange(addresses);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddPaymentCards(ApplicationDbContext context)
@@ -94,7 +96,7 @@ namespace e_tuition2021.Data
             };
 
             context.PaymentCards.AddRange(paymentcards);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddPeople(ApplicationDbContext context)
@@ -106,11 +108,46 @@ namespace e_tuition2021.Data
 
             var people = new Person[]
             {
-                new Person {FirstName="Scaevola", LastName="Sommer", MobileNumber="078945362736789", AddressId=1, PaymentCardId=3},
-                new Person {FirstName="Silvio", LastName="Ture", MobileNumber="087352725367824", AddressId=2, PaymentCardId=4},
-                new Person {FirstName="Judith", LastName="Rickard", MobileNumber="058546378947865", AddressId=3, PaymentCardId=5},
-                new Person {FirstName="Artemis", LastName="Aikema", MobileNumber="043526536299876", AddressId=4, PaymentCardId=6},
-                new Person {FirstName="Munir", LastName="Seth", MobileNumber="086745367890654", AddressId=5, PaymentCardId=7}
+                new Person 
+                {
+                    FirstName="Scaevola", 
+                    LastName="Sommer", 
+                    MobileNumber="078945362736789", 
+                    AddressId=1, 
+                    PaymentCardId=1
+                },
+                new Person 
+                {   
+                    FirstName="Silvio", 
+                    LastName="Ture", 
+                    MobileNumber="087352725367824", 
+                    AddressId=2, 
+                    PaymentCardId=2
+                },
+                new Person 
+                {
+                    FirstName="Judith", 
+                    LastName="Rickard", 
+                    MobileNumber="058546378947865", 
+                    AddressId=3, 
+                    PaymentCardId=3
+                },
+                new Person 
+                {
+                    FirstName="Artemis", 
+                    LastName="Aikema", 
+                    MobileNumber="043526536299876", 
+                    AddressId=4, 
+                    PaymentCardId=4
+                },
+                new Person 
+                {
+                    FirstName="Munir", 
+                    LastName="Seth",
+                    MobileNumber="086745367890654", 
+                    AddressId=5, 
+                    PaymentCardId=5
+                }
                 //new Person {FirstName="Robert", LastName="Poggio", MobileNumber="0676556342524566", AddressId=6, PaymentCardId=8},
                 //new Person {FirstName="Jeremi", LastName="Hussain", MobileNumber="0123456473896735", AddressId=7, PaymentCardId=9},
                 //new Person {FirstName="Pepin", LastName="Trevor", MobileNumber="0234564689256376", AddressId=8, PaymentCardId=10},
@@ -133,8 +170,8 @@ namespace e_tuition2021.Data
             {
                 new Tutor 
                 {
-                    AddressId = 11,
-                    PaymentCardId = 1,
+                    AddressId = 6,
+                    PaymentCardId = 6,
                     FirstName = "Bob",
                     LastName = "Miles",
                     Degree="BSc (Hons) Maths", 
@@ -146,8 +183,8 @@ namespace e_tuition2021.Data
 
                 new Tutor
                 {
-                    AddressId=11,
-                    PaymentCardId=2,
+                    AddressId=7,
+                    PaymentCardId=7,
                     FirstName="Elif",
                     LastName="Sharma",
                     Degree="Bsc (Hons)English",
@@ -158,8 +195,8 @@ namespace e_tuition2021.Data
                 },
                 new Tutor
                 {
-                    AddressId=11,
-                    PaymentCardId=3,
+                    AddressId=8,
+                    PaymentCardId=8,
                     FirstName="Sammuel",
                     LastName="Lennon",
                     Degree="Hsc (Hons)Biology",
@@ -170,8 +207,8 @@ namespace e_tuition2021.Data
                 },
                 new Tutor
                 {
-                    AddressId=11,
-                    PaymentCardId=4,
+                    AddressId=9,
+                    PaymentCardId=9,
                     FirstName="Milada",
                     LastName="Slavkov",
                     Degree="Bsc (Hons)Chemistry",
@@ -182,8 +219,8 @@ namespace e_tuition2021.Data
                 },
                 new Tutor
                 {
-                    AddressId=11,
-                    PaymentCardId=5,
+                    AddressId=10,
+                    PaymentCardId=10,
                     FirstName="Nada",
                     LastName="Beck",
                     Degree="PHD Physics",
@@ -191,47 +228,47 @@ namespace e_tuition2021.Data
                     Cost=19,
                     PGCE=true,
                     DbsCheck=new DateTime(2020,2,10)
-                },
-                new Tutor
-                {
-                    AddressId=11,
-                    PaymentCardId=6,
-                    FirstName="Miksa",
-                    LastName="Linden",
-                    Degree="Bsc (Hons)Maths",
-                    MobileNumber="089465367992345",
-                    Cost=20,
-                    PGCE=true,
-                    DbsCheck=new DateTime(2021,4,3)
-                },
-                new Tutor
-                {
-                    AddressId=11,
-                    PaymentCardId=7,
-                    FirstName="Davor",
-                    LastName="Statham",
-                    Degree="Bsc (Hons)English",
-                    MobileNumber="034566273564825",
-                    Cost=15,
-                    PGCE=true,
-                    DbsCheck=new DateTime(2018,9,29)
-                },
-                new Tutor
-                {
-                    AddressId=11,
-                    PaymentCardId=8,
-                    FirstName="Govad",
-                    LastName="Montgomery",
-                    Degree="PHD Computing",
-                    MobileNumber="0564738263728",
-                    Cost=20,
-                    PGCE=true,
-                    DbsCheck=new DateTime(2020,11,11)
                 }
+                //new Tutor
+                //{
+                //    AddressId=36,
+                //    PaymentCardId=34,
+                //    FirstName="Miksa",
+                //    LastName="Linden",
+                //    Degree="Bsc (Hons)Maths",
+                //    MobileNumber="089465367992345",
+                //    Cost=20,
+                //    PGCE=true,
+                //    DbsCheck=new DateTime(2021,4,3)
+                //},
+                //new Tutor
+                //{
+                //    AddressId=37,
+                //    PaymentCardId=34,
+                //    FirstName="Davor",
+                //    LastName="Statham",
+                //    Degree="Bsc (Hons)English",
+                //    MobileNumber="034566273564825",
+                //    Cost=15,
+                //    PGCE=true,
+                //    DbsCheck=new DateTime(2018,9,29)
+                //},
+                //new Tutor
+                //{
+                //    AddressId=38,
+                //    PaymentCardId=34,
+                //    FirstName="Govad",
+                //    LastName="Montgomery",
+                //    Degree="PHD Computing",
+                //    MobileNumber="056473826372886",
+                //    Cost=20,
+                //    PGCE=true,
+                //    DbsCheck=new DateTime(2020,11,11)
+                //}
             };
 
             context.Tutors.AddRange(tutor);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddStaff(ApplicationDbContext context)
@@ -250,8 +287,7 @@ namespace e_tuition2021.Data
                     MobileNumber = "07981234765",
                     JobTitle = "Lead Programmer", 
                     Salary = 50000, 
-                    AddressId = 6, 
-                    PaymentCardId = 1
+                    
                 },
                 new Staff 
                 {
@@ -260,8 +296,7 @@ namespace e_tuition2021.Data
                     MobileNumber="03456278973",
                     JobTitle="Designer", 
                     Salary=20000,
-                    AddressId = 7,
-                    PaymentCardId = 1
+                    
                 },
                 new Staff 
                 {
@@ -270,8 +305,7 @@ namespace e_tuition2021.Data
                     MobileNumber="06748536892",
                     JobTitle="Project Manager", 
                     Salary=15000,
-                    AddressId=8,
-                    PaymentCardId=1
+                    
                 },
                 new Staff 
                 {
@@ -280,38 +314,117 @@ namespace e_tuition2021.Data
                     MobileNumber="01439876634",
                     JobTitle="Technician", 
                     Salary=18000,
-                    AddressId=9,
-                    PaymentCardId=1
+                   
                 }
             };
 
             context.Staff.AddRange(staff);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddLessons(ApplicationDbContext context)
         {
-            //if(context.Lessons.Any())
-            //{
-            //    return;
-            //}
+            if (context.Lessons.Any())
+            {
+                return;
+            }
 
-            //var lessons = new Lesson[]
-            //{
-            //    new Lesson {TimeSlotId=1, PersonId=1, StudentId=1, KeyStage=4, FaceToFace=true},
-            //    new Lesson {TimeSlotId=2, PersonId=2, StudentId=2, KeyStage=3, Online=true},
-            //    new Lesson {TimeSlotId=3, PersonId=3, StudentId=3, KeyStage=2, FaceToFace=true},
-            //    new Lesson {TimeSlotId=4, PersonId=4, StudentId=4, KeyStage=1, Online=true},
-            //    new Lesson {TimeSlotId=5, PersonId=5, StudentId=5, KeyStage=1, FaceToFace=true},
-            //    new Lesson {TimeSlotId=6, PersonId=6, StudentId=6, KeyStage=2, Online=true},
-            //    new Lesson {TimeSlotId=7, PersonId=7, StudentId=7, KeyStage=3, FaceToFace=true},
-            //    new Lesson {TimeSlotId=8, PersonId=8, StudentId=8, KeyStage=4, Online=true},
-            //    new Lesson {TimeSlotId=9, PersonId=9, StudentId=9, KeyStage=4, FaceToFace=true},
-            //    new Lesson {TimeSlotId=10, PersonId=10, StudentId=10, KeyStage=3, Online=true}
+            var lessons = new Lesson[]
+            {
+                new Lesson 
+                {
+                    //TimeSlotId=1, 
+                    PersonId=1, 
+                    StudentId=1, 
+                    KeyStage=4, 
+                    FaceToFace=true, 
+                    StartDate=new DateTime(11,4/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=2, 
+                    PersonId=2, 
+                    StudentId=2, 
+                    KeyStage=3, 
+                    Online=true, 
+                    StartDate=new DateTime(5/1/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=3, 
+                    PersonId=3, 
+                    StudentId=3, 
+                    KeyStage=2, 
+                    FaceToFace=true, 
+                    StartDate=new DateTime(7/3/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=4, 
+                    PersonId=4, 
+                    StudentId=4, 
+                    KeyStage=1, 
+                    Online=true, 
+                    StartDate=new DateTime(3/6/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=5, 
+                    PersonId=5, 
+                    StudentId=5, 
+                    KeyStage=1, 
+                    FaceToFace=true, 
+                    StartDate=new DateTime(10/2/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=6, 
+                    PersonId=6, 
+                    StudentId=6, 
+                    KeyStage=2, 
+                    Online=true, 
+                    StartDate=new DateTime(12/9/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=7, 
+                    PersonId=7, 
+                    StudentId=7, 
+                    KeyStage=3, 
+                    FaceToFace=true, 
+                    StartDate=new DateTime(9/11/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=8, 
+                    PersonId=8, 
+                    StudentId=8, 
+                    KeyStage=4, 
+                    Online=true, 
+                    StartDate=new DateTime(30/1/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=9, 
+                    PersonId=9,
+                    StudentId=9,
+                    KeyStage=4, 
+                    FaceToFace=true,
+                    StartDate=new DateTime(22/5/2020)
+                },
+                new Lesson 
+                {
+                    //TimeSlotId=10,
+                    PersonId=10,
+                    StudentId=10, 
+                    KeyStage=3,
+                    Online=true,
+                    StartDate=new DateTime(19/10/2020)
+                }
 
-            //};
+            };
 
-            //context.Lessons.AddRange(lessons);
+            context.Lessons.AddRange(lessons);
             //context.SaveChanges();
         }
 
@@ -326,6 +439,7 @@ namespace e_tuition2021.Data
             {
                 new Student 
                 {
+                    StudentName="Govinder Sommer",
                     KeyStage=3, 
                     ParentId=1, 
                     TutorId=1
@@ -333,86 +447,130 @@ namespace e_tuition2021.Data
 
                 new Student 
                 {   
+                    StudentName="Susan Ture",
                     KeyStage=4, 
                     ParentId=2, 
                     TutorId=2
                 },
                 new Student 
                 {
+                    StudentName="Magda Rickard",
                     KeyStage=2, 
                     ParentId=3, 
                     TutorId=3
                 },
                 new Student 
                 {
+                    StudentName="Mohan Aikema",
                     KeyStage=1, 
                     ParentId=4, 
                     TutorId=4
                 },
                 new Student 
                 {
+                    StudentName="Helen Seth",
                     KeyStage=1, 
                     ParentId=5, 
                     TutorId=5
-                },
-                new Student 
-                {
-                    KeyStage=2, 
-                    ParentId=6, 
-                    TutorId=6
-                },
-                new Student 
-                {
-                    KeyStage=3, 
-                    ParentId=7, 
-                    TutorId=7
-                },
-                new Student 
-                {
-                    KeyStage=4, 
-                    ParentId=8, 
-                    TutorId=8
-                },
-                new Student 
-                {
-                    KeyStage=4, 
-                    ParentId=9, 
-                    TutorId=9
-                },
-                new Student 
-                {
-                    KeyStage=3, 
-                    ParentId=10, 
-                    TutorId=10
                 }
             };
 
             context.Students.AddRange(students);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddTimeSlots (ApplicationDbContext context)
         {
-            //if(context.TimeSlot.Any())
-            //{
-            //    return;
-            //}
+            if (context.TimeSlot.Any())
+            {
+                return;
+            }
 
-            //var timeslots = new TimeSlot[]
-            //{
-            //    new TimeSlot{TutorId=1, Booked=true, DayOfTheWeek=12, StartHour=0900, EndHour=1000},
-            //    new TimeSlot{TutorId=2, Booked=true, DayOfTheWeek=15, StartHour=1200, EndHour=1300},
-            //    new TimeSlot{TutorId=3, Booked=true, DayOfTheWeek=18, StartHour=1000, EndHour=1100},
-            //    new TimeSlot{TutorId=4, Booked=true, DayOfTheWeek=21, StartHour=1400,EndHour=1500},
-            //    new TimeSlot{TutorId=5, Booked=true, DayOfTheWeek=24, StartHour=0930, EndHour=1030},
-            //    new TimeSlot{TutorId=6, Booked=true, DayOfTheWeek=27, StartHour=1030, EndHour=1130},
-            //    new TimeSlot{TutorId=7, Booked=true, DayOfTheWeek=30, StartHour=1230, EndHour=1300},
-            //    new TimeSlot{TutorId=8, Booked=true, DayOfTheWeek=14, StartHour=1410, EndHour=1510},
-            //    new TimeSlot{TutorId=9, Booked=true, DayOfTheWeek=22, StartHour=0900, EndHour=1030},
-            //    new TimeSlot {TutorId=10, Booked=true, DayOfTheWeek=29, StartHour=1330, EndHour=1430}
-            //};
+            var timeslots = new TimeSlot[]
+            {
+                new TimeSlot
+                {
+                    //TutorId=1, 
+                    Booked=true, 
+                    DayOfTheWeek=12, 
+                    StartHour=0900, 
+                    EndHour=1000
+                },
+                new TimeSlot
+                {
+                    //TutorId=2, 
+                    Booked=true,
+                    DayOfTheWeek=15,
+                    StartHour=1200,
+                    EndHour=1300
+                },
+                new TimeSlot
+                {
+                    //TutorId=3, 
+                    Booked=true,
+                    DayOfTheWeek=18,
+                    StartHour=1000,
+                    EndHour=1100
+                },
+                new TimeSlot
+                {
+                    //TutorId=4,
+                    Booked=true,
+                    DayOfTheWeek=21,
+                    StartHour=1400,
+                    EndHour=1500
+                },
+                new TimeSlot
+                {
+                    //TutorId=5, 
+                    Booked=true,
+                    DayOfTheWeek=24,
+                    StartHour=0930,
+                    EndHour=1030
+                },
+                new TimeSlot
+                {
+                    //TutorId=6, 
+                    Booked=true, 
+                    DayOfTheWeek=27, 
+                    StartHour=1030, 
+                    EndHour=1130
+                },
+                new TimeSlot
+                {
+                    //TutorId=7, 
+                    Booked=true, 
+                    DayOfTheWeek=30, 
+                    StartHour=1230, 
+                    EndHour=1300
+                },
+                new TimeSlot
+                {
+                    //TutorId=8, 
+                    Booked=true, 
+                    DayOfTheWeek=14, 
+                    StartHour=1410, 
+                    EndHour=1510
+                },
+                new TimeSlot
+                {
+                    //TutorId=9, 
+                    Booked=true, 
+                    DayOfTheWeek=22, 
+                    StartHour=0900, 
+                    EndHour=1030
+                },
+                new TimeSlot
+                {
+                    //TutorId=10, 
+                    Booked=true, 
+                    DayOfTheWeek=29, 
+                    StartHour=1330, 
+                    EndHour=1430
+                }
+            };
 
-            //context.TimeSlot.AddRange(timeslots);
+            context.TimeSlot.AddRange(timeslots);
             //context.SaveChanges();
         }
 

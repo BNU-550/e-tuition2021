@@ -186,65 +186,114 @@ namespace e_tuition2021.Migrations
                 name: "People",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    PersonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     MobileNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    PaymentCardId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
+                    PaymentCardId = table.Column<int>(type: "int", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Salary = table.Column<decimal>(type: "money", nullable: true),
                     JobTitle = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     DbsCheck = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Degree = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     PGCE = table.Column<bool>(type: "bit", nullable: true),
-                    ImageURL = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Bio = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    ImageURL = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    Bio = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Cost = table.Column<decimal>(type: "money", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.PersonId);
                     table.ForeignKey(
                         name: "FK_People_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_People_PaymentCards_PaymentCardId",
                         column: x => x.PaymentCardId,
                         principalTable: "PaymentCards",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    StudentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     KeyStage = table.Column<int>(type: "int", nullable: false),
                     ParentId = table.Column<int>(type: "int", nullable: false),
                     TutorId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_Students", x => x.StudentId);
                     table.ForeignKey(
                         name: "FK_Students_People_ParentId",
                         column: x => x.ParentId,
                         principalTable: "People",
-                        principalColumn: "Id",
+                        principalColumn: "PersonId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Students_People_TutorId",
                         column: x => x.TutorId,
                         principalTable: "People",
-                        principalColumn: "Id",
+                        principalColumn: "PersonId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TimeSlot",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Booked = table.Column<bool>(type: "bit", nullable: false),
+                    DayOfTheWeek = table.Column<int>(type: "int", nullable: false),
+                    StartHour = table.Column<int>(type: "int", nullable: false),
+                    EndHour = table.Column<int>(type: "int", nullable: false),
+                    TutorPersonId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeSlot", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TimeSlot_People_TutorPersonId",
+                        column: x => x.TutorPersonId,
+                        principalTable: "People",
+                        principalColumn: "PersonId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lessons",
+                columns: table => new
+                {
+                    LessonId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    NoRepeat = table.Column<int>(type: "int", nullable: false),
+                    KeyStage = table.Column<int>(type: "int", nullable: false),
+                    FaceToFace = table.Column<bool>(type: "bit", nullable: false),
+                    Online = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lessons", x => x.LessonId);
+                    table.ForeignKey(
+                        name: "FK_Lessons_Students_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Students",
+                        principalColumn: "StudentId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -287,6 +336,11 @@ namespace e_tuition2021.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lessons_StudentId",
+                table: "Lessons",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_People_AddressId",
                 table: "People",
                 column: "AddressId");
@@ -305,6 +359,11 @@ namespace e_tuition2021.Migrations
                 name: "IX_Students_TutorId",
                 table: "Students",
                 column: "TutorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TimeSlot_TutorPersonId",
+                table: "TimeSlot",
+                column: "TutorPersonId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -325,13 +384,19 @@ namespace e_tuition2021.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "Lessons");
+
+            migrationBuilder.DropTable(
+                name: "TimeSlot");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "People");

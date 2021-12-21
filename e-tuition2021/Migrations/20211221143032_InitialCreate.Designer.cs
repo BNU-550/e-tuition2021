@@ -10,8 +10,8 @@ using e_tuition2021.Data;
 namespace e_tuition2021.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211209104625_NullableFK")]
-    partial class NullableFK
+    [Migration("20211221143032_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -243,6 +243,41 @@ namespace e_tuition2021.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("e_tuition2021.Models.Lesson", b =>
+                {
+                    b.Property<int>("LessonId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("FaceToFace")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("KeyStage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NoRepeat")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Online")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LessonId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Lessons");
+                });
+
             modelBuilder.Entity("e_tuition2021.Models.PaymentCard", b =>
                 {
                     b.Property<int>("Id")
@@ -273,7 +308,7 @@ namespace e_tuition2021.Migrations
 
             modelBuilder.Entity("e_tuition2021.Models.Person", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PersonId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -303,7 +338,7 @@ namespace e_tuition2021.Migrations
                     b.Property<int?>("PaymentCardId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersonId");
 
                     b.HasIndex("AddressId");
 
@@ -316,7 +351,7 @@ namespace e_tuition2021.Migrations
 
             modelBuilder.Entity("e_tuition2021.Models.Student", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("StudentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -327,16 +362,50 @@ namespace e_tuition2021.Migrations
                     b.Property<int>("ParentId")
                         .HasColumnType("int");
 
+                    b.Property<string>("StudentName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<int?>("TutorId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("StudentId");
 
                     b.HasIndex("ParentId");
 
                     b.HasIndex("TutorId");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.TimeSlot", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Booked")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("DayOfTheWeek")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EndHour")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartHour")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TutorPersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TutorPersonId");
+
+                    b.ToTable("TimeSlot");
                 });
 
             modelBuilder.Entity("e_tuition2021.Models.Staff", b =>
@@ -359,8 +428,8 @@ namespace e_tuition2021.Migrations
                     b.HasBaseType("e_tuition2021.Models.Person");
 
                     b.Property<string>("Bio")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<decimal>("Cost")
                         .HasColumnType("money");
@@ -374,8 +443,8 @@ namespace e_tuition2021.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("ImageURL")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("PGCE")
                         .HasColumnType("bit");
@@ -434,6 +503,17 @@ namespace e_tuition2021.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("e_tuition2021.Models.Lesson", b =>
+                {
+                    b.HasOne("e_tuition2021.Models.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("e_tuition2021.Models.Person", b =>
                 {
                     b.HasOne("e_tuition2021.Models.Address", "Address")
@@ -464,6 +544,18 @@ namespace e_tuition2021.Migrations
                     b.Navigation("Parent");
 
                     b.Navigation("Tutor");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.TimeSlot", b =>
+                {
+                    b.HasOne("e_tuition2021.Models.Tutor", null)
+                        .WithMany("Lessons")
+                        .HasForeignKey("TutorPersonId");
+                });
+
+            modelBuilder.Entity("e_tuition2021.Models.Tutor", b =>
+                {
+                    b.Navigation("Lessons");
                 });
 #pragma warning restore 612, 618
         }

@@ -8,7 +8,7 @@ namespace e_tuition2021.Models
         [Key]
         public int Id { get; set; }
 
-        public int TutorId { get; set; }
+        //public int TutorId { get; set; }
 
         public bool Booked { get; set; }
 
@@ -23,7 +23,7 @@ namespace e_tuition2021.Models
 
         //navigation properties
 
-        public Tutor Tutor { get; set; }
+        //public Tutor Tutor { get; set; }
 
     }
 }
