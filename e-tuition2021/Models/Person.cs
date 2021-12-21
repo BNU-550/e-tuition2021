@@ -15,7 +15,7 @@ namespace e_tuition2021.Models
         [StringLength(20), Required, DisplayName("Last Name")]
         public string LastName { get; set; }
 
-        [StringLength(15), Required, DisplayName("Mobile")]
+        [StringLength(20), Required, DisplayName("Mobile")]
         public string MobileNumber { get; set; }
 
         public Nullable<int> AddressId { get; set; }
@@ -28,7 +28,5 @@ namespace e_tuition2021.Models
         public virtual PaymentCard PaymentCard { get; set; }
 
         public string GetFullName() { return FirstName + " " + LastName; }
-
-
     }
 }

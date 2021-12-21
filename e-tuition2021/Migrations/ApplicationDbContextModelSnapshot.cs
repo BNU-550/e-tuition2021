@@ -260,18 +260,20 @@ namespace e_tuition2021.Migrations
                     b.Property<bool>("Online")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TimeSlotId")
+                        .HasColumnType("int");
+
                     b.HasKey("LessonId");
 
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("TimeSlotId");
 
                     b.ToTable("Lessons");
                 });
@@ -330,8 +332,8 @@ namespace e_tuition2021.Migrations
 
                     b.Property<string>("MobileNumber")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int?>("PaymentCardId")
                         .HasColumnType("int");
@@ -365,14 +367,9 @@ namespace e_tuition2021.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int?>("TutorId")
-                        .HasColumnType("int");
-
                     b.HasKey("StudentId");
 
                     b.HasIndex("ParentId");
-
-                    b.HasIndex("TutorId");
 
                     b.ToTable("Students");
                 });
@@ -396,12 +393,12 @@ namespace e_tuition2021.Migrations
                     b.Property<int>("StartHour")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TutorPersonId")
+                    b.Property<int>("TutorId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TutorPersonId");
+                    b.HasIndex("TutorId");
 
                     b.ToTable("TimeSlot");
                 });
@@ -509,7 +506,15 @@ namespace e_tuition2021.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("e_tuition2021.Models.TimeSlot", "TimeSlot")
+                        .WithMany()
+                        .HasForeignKey("TimeSlotId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Student");
+
+                    b.Navigation("TimeSlot");
                 });
 
             modelBuilder.Entity("e_tuition2021.Models.Person", b =>
@@ -535,20 +540,18 @@ namespace e_tuition2021.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("e_tuition2021.Models.Person", "Tutor")
-                        .WithMany()
-                        .HasForeignKey("TutorId");
-
                     b.Navigation("Parent");
-
-                    b.Navigation("Tutor");
                 });
 
             modelBuilder.Entity("e_tuition2021.Models.TimeSlot", b =>
                 {
-                    b.HasOne("e_tuition2021.Models.Tutor", null)
+                    b.HasOne("e_tuition2021.Models.Tutor", "Tutor")
                         .WithMany("Lessons")
-                        .HasForeignKey("TutorPersonId");
+                        .HasForeignKey("TutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tutor");
                 });
 
             modelBuilder.Entity("e_tuition2021.Models.Tutor", b =>

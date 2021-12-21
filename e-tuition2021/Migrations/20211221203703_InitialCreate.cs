@@ -190,7 +190,7 @@ namespace e_tuition2021.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    MobileNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    MobileNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     AddressId = table.Column<int>(type: "int", nullable: true),
                     PaymentCardId = table.Column<int>(type: "int", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -228,8 +228,7 @@ namespace e_tuition2021.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StudentName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     KeyStage = table.Column<int>(type: "int", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false),
-                    TutorId = table.Column<int>(type: "int", nullable: true)
+                    ParentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,12 +239,6 @@ namespace e_tuition2021.Migrations
                         principalTable: "People",
                         principalColumn: "PersonId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Students_People_TutorId",
-                        column: x => x.TutorId,
-                        principalTable: "People",
-                        principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -254,21 +247,21 @@ namespace e_tuition2021.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    TutorId = table.Column<int>(type: "int", nullable: false),
                     Booked = table.Column<bool>(type: "bit", nullable: false),
                     DayOfTheWeek = table.Column<int>(type: "int", nullable: false),
                     StartHour = table.Column<int>(type: "int", nullable: false),
-                    EndHour = table.Column<int>(type: "int", nullable: false),
-                    TutorPersonId = table.Column<int>(type: "int", nullable: true)
+                    EndHour = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TimeSlot", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TimeSlot_People_TutorPersonId",
-                        column: x => x.TutorPersonId,
+                        name: "FK_TimeSlot_People_TutorId",
+                        column: x => x.TutorId,
                         principalTable: "People",
                         principalColumn: "PersonId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -277,7 +270,7 @@ namespace e_tuition2021.Migrations
                 {
                     LessonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    TimeSlotId = table.Column<int>(type: "int", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NoRepeat = table.Column<int>(type: "int", nullable: false),
@@ -294,6 +287,12 @@ namespace e_tuition2021.Migrations
                         principalTable: "Students",
                         principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Lessons_TimeSlot_TimeSlotId",
+                        column: x => x.TimeSlotId,
+                        principalTable: "TimeSlot",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -341,6 +340,11 @@ namespace e_tuition2021.Migrations
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lessons_TimeSlotId",
+                table: "Lessons",
+                column: "TimeSlotId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_People_AddressId",
                 table: "People",
                 column: "AddressId");
@@ -356,14 +360,9 @@ namespace e_tuition2021.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Students_TutorId",
-                table: "Students",
-                column: "TutorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TimeSlot_TutorPersonId",
+                name: "IX_TimeSlot_TutorId",
                 table: "TimeSlot",
-                column: "TutorPersonId");
+                column: "TutorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -387,9 +386,6 @@ namespace e_tuition2021.Migrations
                 name: "Lessons");
 
             migrationBuilder.DropTable(
-                name: "TimeSlot");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -397,6 +393,9 @@ namespace e_tuition2021.Migrations
 
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "TimeSlot");
 
             migrationBuilder.DropTable(
                 name: "People");

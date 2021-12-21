@@ -5,17 +5,17 @@ using System.ComponentModel.DataAnnotations;
 namespace e_tuition2021.Models
 {
     /// <summary>
-    /// This lesson will be deliverd in a particular time slot
+    /// This lesson will be delivered in a particular time slot
     /// by a tutor with a student payed for by a parent.
     /// </summary>
     public class Lesson
     {
         public int LessonId { get; set; }
 
-        //public int TimeSlotId { get; set; }
+        public int TimeSlotId { get; set; }
 
-        [Required, DisplayName("Parent")]
-        public int PersonId { get; set; }
+        //[Required, DisplayName("Parent")]
+        //public int PersonId { get; set; }
 
         [Required, DisplayName("Student")]
         public int StudentId { get; set; }
@@ -34,7 +34,7 @@ namespace e_tuition2021.Models
 
         //navigation property
 
-        //public virtual TimeSlot TimeSlot { get; set; }
+        public virtual TimeSlot TimeSlot { get; set; }
 
         public virtual Student Student { get; set; }
     }

@@ -18,7 +18,5 @@ namespace e_tuition2021.Models
 
         [Range(2021, 2030), Required]
         public int ExpiryYear { get; set; }
-
-
     }
 }

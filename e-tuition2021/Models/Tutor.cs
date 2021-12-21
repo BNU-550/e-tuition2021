@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace e_tuition2021.Models
 {
+    /// <summary>
+    /// Removed MobilePhoneNumber as it is duplicated!
+    /// </summary>
     public class Tutor : Person
     {
         [DataType(DataType.Date), Required]
@@ -13,9 +16,6 @@ namespace e_tuition2021.Models
 
         [StringLength(30), Required]
         public string Degree { get; set; }
-
-        [StringLength(20), Required, DisplayName("Mobile")]
-        public string MobileNumber { get; set; }
 
         public bool PGCE { get; set; }
 
@@ -28,7 +28,6 @@ namespace e_tuition2021.Models
         [DataType(DataType.Currency), Required, DisplayName("Cost per hour"), Range(15, 20)]
         [Column(TypeName = "money")]
         public decimal Cost { get; set; }
-
         public virtual ICollection<TimeSlot> Lessons { get; set; }
     }
 }

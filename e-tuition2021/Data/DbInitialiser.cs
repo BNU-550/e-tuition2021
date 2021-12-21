@@ -40,11 +40,12 @@ namespace e_tuition2021.Data
 
             AddStaff(context);
 
-            //AddLessons(context);
-
             AddStudents(context);
 
-            //AddTimeSlots(context);
+            AddTimeSlots(context);
+
+            AddLessons(context);
+
         }
 
         private static void AddAddresses(ApplicationDbContext context)
@@ -333,8 +334,8 @@ namespace e_tuition2021.Data
             {
                 new Lesson 
                 {
-                    //TimeSlotId=1, 
-                    PersonId=1, 
+                    TimeSlotId=1, 
+                    //PersonId=1, 
                     StudentId=1, 
                     KeyStage=4, 
                     FaceToFace=true, 
@@ -342,8 +343,8 @@ namespace e_tuition2021.Data
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=2, 
-                    PersonId=2, 
+                    TimeSlotId=2, 
+                    //PersonId=2, 
                     StudentId=2, 
                     KeyStage=3, 
                     Online=true, 
@@ -351,8 +352,8 @@ namespace e_tuition2021.Data
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=3, 
-                    PersonId=3, 
+                    TimeSlotId=3, 
+                    //PersonId=3, 
                     StudentId=3, 
                     KeyStage=2, 
                     FaceToFace=true, 
@@ -360,8 +361,8 @@ namespace e_tuition2021.Data
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=4, 
-                    PersonId=4, 
+                    TimeSlotId=4, 
+                    //PersonId=4, 
                     StudentId=4, 
                     KeyStage=1, 
                     Online=true, 
@@ -369,8 +370,8 @@ namespace e_tuition2021.Data
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=5, 
-                    PersonId=5, 
+                    TimeSlotId=5, 
+                    //PersonId=5, 
                     StudentId=5, 
                     KeyStage=1, 
                     FaceToFace=true, 
@@ -378,45 +379,45 @@ namespace e_tuition2021.Data
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=6, 
-                    PersonId=6, 
-                    StudentId=6, 
+                    TimeSlotId=6, 
+                    //PersonId=6, 
+                    StudentId=1, 
                     KeyStage=2, 
                     Online=true, 
                     StartDate=new DateTime(12/9/2020)
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=7, 
-                    PersonId=7, 
-                    StudentId=7, 
+                    TimeSlotId=7, 
+                    //PersonId=7, 
+                    StudentId=2, 
                     KeyStage=3, 
                     FaceToFace=true, 
                     StartDate=new DateTime(9/11/2020)
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=8, 
-                    PersonId=8, 
-                    StudentId=8, 
+                    TimeSlotId=8, 
+                    //PersonId=8, 
+                    StudentId=3, 
                     KeyStage=4, 
                     Online=true, 
                     StartDate=new DateTime(30/1/2020)
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=9, 
-                    PersonId=9,
-                    StudentId=9,
+                    TimeSlotId=9, 
+                    //PersonId=9,
+                    StudentId=4,
                     KeyStage=4, 
                     FaceToFace=true,
                     StartDate=new DateTime(22/5/2020)
                 },
                 new Lesson 
                 {
-                    //TimeSlotId=10,
-                    PersonId=10,
-                    StudentId=10, 
+                    TimeSlotId=10,
+                    //PersonId=10,
+                    StudentId=5, 
                     KeyStage=3,
                     Online=true,
                     StartDate=new DateTime(19/10/2020)
@@ -425,7 +426,7 @@ namespace e_tuition2021.Data
             };
 
             context.Lessons.AddRange(lessons);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
         private static void AddStudents(ApplicationDbContext context)
@@ -442,7 +443,7 @@ namespace e_tuition2021.Data
                     StudentName="Govinder Sommer",
                     KeyStage=3, 
                     ParentId=1, 
-                    TutorId=1
+                    //TutorId=1
                 },
 
                 new Student 
@@ -450,28 +451,28 @@ namespace e_tuition2021.Data
                     StudentName="Susan Ture",
                     KeyStage=4, 
                     ParentId=2, 
-                    TutorId=2
+                    //TutorId=2
                 },
                 new Student 
                 {
                     StudentName="Magda Rickard",
                     KeyStage=2, 
                     ParentId=3, 
-                    TutorId=3
+                    //TutorId=3
                 },
                 new Student 
                 {
                     StudentName="Mohan Aikema",
                     KeyStage=1, 
                     ParentId=4, 
-                    TutorId=4
+                    //TutorId=4
                 },
                 new Student 
                 {
                     StudentName="Helen Seth",
                     KeyStage=1, 
                     ParentId=5, 
-                    TutorId=5
+                    //TutorId=5
                 }
             };
 
@@ -490,7 +491,7 @@ namespace e_tuition2021.Data
             {
                 new TimeSlot
                 {
-                    //TutorId=1, 
+                    TutorId=6, 
                     Booked=true, 
                     DayOfTheWeek=12, 
                     StartHour=0900, 
@@ -498,7 +499,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=2, 
+                    TutorId=6, 
                     Booked=true,
                     DayOfTheWeek=15,
                     StartHour=1200,
@@ -506,7 +507,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=3, 
+                    TutorId=7, 
                     Booked=true,
                     DayOfTheWeek=18,
                     StartHour=1000,
@@ -514,7 +515,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=4,
+                    TutorId=7,
                     Booked=true,
                     DayOfTheWeek=21,
                     StartHour=1400,
@@ -522,7 +523,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=5, 
+                    TutorId=8, 
                     Booked=true,
                     DayOfTheWeek=24,
                     StartHour=0930,
@@ -530,7 +531,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=6, 
+                    TutorId=8, 
                     Booked=true, 
                     DayOfTheWeek=27, 
                     StartHour=1030, 
@@ -538,7 +539,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=7, 
+                    TutorId=9, 
                     Booked=true, 
                     DayOfTheWeek=30, 
                     StartHour=1230, 
@@ -546,7 +547,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=8, 
+                    TutorId=9, 
                     Booked=true, 
                     DayOfTheWeek=14, 
                     StartHour=1410, 
@@ -554,7 +555,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=9, 
+                    TutorId=10, 
                     Booked=true, 
                     DayOfTheWeek=22, 
                     StartHour=0900, 
@@ -562,7 +563,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    //TutorId=10, 
+                    TutorId=10, 
                     Booked=true, 
                     DayOfTheWeek=29, 
                     StartHour=1330, 
@@ -571,7 +572,7 @@ namespace e_tuition2021.Data
             };
 
             context.TimeSlot.AddRange(timeslots);
-            //context.SaveChanges();
+            context.SaveChanges();
         }
 
 
