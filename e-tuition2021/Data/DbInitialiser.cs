@@ -456,7 +456,7 @@ namespace e_tuition2021.Data
                 new Student 
                 {
                     StudentName="Magda Rickard",
-                    KeyStage=2, 
+                    KeyStage=6, 
                     ParentId=3, 
                     //TutorId=3
                 },
@@ -499,7 +499,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=6, 
+                    TutorId=7, 
                     Booked=true,
                     DayOfTheWeek=15,
                     StartHour=1200,
@@ -507,7 +507,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=7, 
+                    TutorId=8, 
                     Booked=true,
                     DayOfTheWeek=18,
                     StartHour=1000,
@@ -515,7 +515,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=7,
+                    TutorId=9,
                     Booked=true,
                     DayOfTheWeek=21,
                     StartHour=1400,
@@ -523,7 +523,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=8, 
+                    TutorId=10, 
                     Booked=true,
                     DayOfTheWeek=24,
                     StartHour=0930,
@@ -539,7 +539,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=9, 
+                    TutorId=7, 
                     Booked=true, 
                     DayOfTheWeek=30, 
                     StartHour=1230, 
@@ -547,7 +547,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=9, 
+                    TutorId=6, 
                     Booked=true, 
                     DayOfTheWeek=14, 
                     StartHour=1410, 
@@ -555,7 +555,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=10, 
+                    TutorId=9, 
                     Booked=true, 
                     DayOfTheWeek=22, 
                     StartHour=0900, 
@@ -563,7 +563,7 @@ namespace e_tuition2021.Data
                 },
                 new TimeSlot
                 {
-                    TutorId=10, 
+                    TutorId=8, 
                     Booked=true, 
                     DayOfTheWeek=29, 
                     StartHour=1330, 
