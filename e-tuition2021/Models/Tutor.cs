@@ -28,6 +28,12 @@ namespace e_tuition2021.Models
         [DataType(DataType.Currency), Required, DisplayName("Cost per hour"), Range(15, 20)]
         [Column(TypeName = "money")]
         public decimal Cost { get; set; }
+        
+        // Navigation Properties
+
         public virtual ICollection<TimeSlot> Lessons { get; set; }
+        
+        // Available times that can be booked
+        //public virtual ICollection<TimeSlot> TimeSlots { get; set; }
     }
 }
