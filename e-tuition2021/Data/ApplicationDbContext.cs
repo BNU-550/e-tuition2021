@@ -16,11 +16,11 @@ namespace e_tuition2021.Data
 
         public DbSet<Student> Students { get; set; }
 
-        public DbSet<Staff> Staff { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
         public DbSet<Tutor> Tutors { get; set; }
 
-        public DbSet<TimeSlot> TimeSlot { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
 
         public DbSet<Lesson> Lessons { get; set; }
 

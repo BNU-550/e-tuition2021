@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_tuition2021.Data;
 
 namespace e_tuition2021.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211228194825_ChangeTableNames")]
+    partial class ChangeTableNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,16 +271,11 @@ namespace e_tuition2021.Migrations
                     b.Property<int>("TimeSlotId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TutorPersonId")
-                        .HasColumnType("int");
-
                     b.HasKey("LessonId");
 
                     b.HasIndex("StudentId");
 
                     b.HasIndex("TimeSlotId");
-
-                    b.HasIndex("TutorPersonId");
 
                     b.ToTable("Lessons");
                 });
@@ -517,10 +514,6 @@ namespace e_tuition2021.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("e_tuition2021.Models.Tutor", null)
-                        .WithMany("Lessons")
-                        .HasForeignKey("TutorPersonId");
-
                     b.Navigation("Student");
 
                     b.Navigation("TimeSlot");
@@ -555,7 +548,7 @@ namespace e_tuition2021.Migrations
             modelBuilder.Entity("e_tuition2021.Models.TimeSlot", b =>
                 {
                     b.HasOne("e_tuition2021.Models.Tutor", "Tutor")
-                        .WithMany("TimeSlots")
+                        .WithMany("Lessons")
                         .HasForeignKey("TutorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -566,8 +559,6 @@ namespace e_tuition2021.Migrations
             modelBuilder.Entity("e_tuition2021.Models.Tutor", b =>
                 {
                     b.Navigation("Lessons");
-
-                    b.Navigation("TimeSlots");
                 });
 #pragma warning restore 612, 618
         }

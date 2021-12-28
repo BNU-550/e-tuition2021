@@ -31,9 +31,9 @@ namespace e_tuition2021.Models
         
         // Navigation Properties
 
-        public virtual ICollection<TimeSlot> Lessons { get; set; }
+        public virtual ICollection<Lesson> Lessons { get; set; }
         
         // Available times that can be booked
-        //public virtual ICollection<TimeSlot> TimeSlots { get; set; }
+        public virtual ICollection<TimeSlot> TimeSlots { get; set; }
     }
 }

@@ -274,7 +274,7 @@ namespace e_tuition2021.Data
 
         private static void AddStaff(ApplicationDbContext context)
         {
-            if (context.Staff.Any())
+            if (context.Staffs.Any())
             { 
                 return; 
             }
@@ -319,7 +319,7 @@ namespace e_tuition2021.Data
                 }
             };
 
-            context.Staff.AddRange(staff);
+            context.Staffs.AddRange(staff);
             context.SaveChanges();
         }
 
@@ -482,7 +482,7 @@ namespace e_tuition2021.Data
 
         private static void AddTimeSlots (ApplicationDbContext context)
         {
-            if (context.TimeSlot.Any())
+            if (context.TimeSlots.Any())
             {
                 return;
             }
@@ -571,7 +571,7 @@ namespace e_tuition2021.Data
                 }
             };
 
-            context.TimeSlot.AddRange(timeslots);
+            context.TimeSlots.AddRange(timeslots);
             context.SaveChanges();
         }
 
