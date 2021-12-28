@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace e_tuition2021.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<TuitionUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
