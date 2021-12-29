@@ -10,25 +10,27 @@
 <div class="text-center">
     <h1 class="display-4">@Model.Message</h1>
     
-<form method="post" class="mx-auto" style="width:200px">
-    <h2>Tutor Login</h2>
-        <p class="col-sm-2">
-            <label>First Name</label>
-            <input type="text" asp-for="Tutor.FirstName" required="true" placeholder="Enter your name" />
+<form method="post" class="mx-auto" style="width:auto">
+    <h2 style="text-align:left">Tutor Login</h2>
+     <div class="form-group">
+        <p style="text-align:center">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" asp-for="Tutor.FirstName" required="true" placeholder="Enter your first name" />
         </p>
+     </div>
 
-        <p class="col-sm-2">
+        <p style="text-align:center">
             <label>Last name</label>
-            <input type="text" asp-for="Tutor.LastName" required="true" placeholder="Enter your name" />
+            <input type="text" asp-for="Tutor.LastName" required="true" placeholder="Enter your last name" />
         </p>
 
-        <p class="col-sm-2">
+        <p style="text-align:center">
             <label>Email</label>
             <input type="email" name="Email" required="true" placeholder="Enter your email address" />
         </p>
 
-        <p class="col-sm-2">
-            <button type="submit" class="btn-btn-primary">
+        <p style="text-align:center">
+           <button type="submit" class="btn btn-light btn-sm">
                 Login
             </button>
         </p>
