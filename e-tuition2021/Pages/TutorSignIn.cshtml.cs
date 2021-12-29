@@ -11,6 +11,7 @@ namespace e_tuition2021.Pages
 
         [BindProperty]
         public Tutor Tutor { get; set; }
+
         public void OnGet()
         {
         }
