@@ -1,74 +1,86 @@
 ﻿@page
+@using e_tuition2021.Models
 @model e_tuition2021.Pages.TutorSignInModel
 @{
     ViewData["Title"] = "Tutor account";
 }
 
 <!--Tutor Sign Up-->
+<header class="jumbotron">
+    <h1>Tutor Login</h1>
+    <h2>@Model.Message</h2>
+</header>
 
-<div class="text-center">
-    <h1 class="display-4">@Model.Message</h1>
-    
-<form method="post" class="mx-auto" style="width:200px">
-    <h2>Tutor Create an account</h2>
-        <p class="col-sm-2">
-            <label>First Name</label>
-            <input type="text" asp-for="Tutor.FirstName" required="true" placeholder="Enter your first name" />
-        </p>
+<section>
+    <div class="row">
+        <div class="col-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-         <div class="col-sm-2">
-            <label>Last Name</label>
-            <input type="text" asp-for="Tutor.LastName" required="true" placeholder="Enter your last name" />
-        </div>
+                <div class="form-group">
+                    <label asp-for="Tutor.FirstName"></label>
+                    <input class="form-control"
+                           asp-for="Tutor.FirstName"
+                           placeholder="Enter your first name" />
+                    <span asp-validation-for="Tutor.FirstName" class="alert-danger"></span>
+                </div>
 
-        <p class="col-sm-2">
-            <label>Email</label>
-            <input type="email" name="Email" required="true" placeholder="Enter your email address" />
-        </p>
+                <div class="form-group">
+                    <label asp-for="Tutor.LastName"></label>
+                    <input class="form-control" asp-for="Tutor.LastName"
+                           placeholder="Enter your last name" />
+                    <span asp-validation-for="Tutor.LastName" class="alert-danger"></span>
+                </div>
 
-         <p class="col-sm-2">
-            <label>Mobile number</label>
-            <input type="number" asp-for="Tutor.MobileNumber" required="true" placeholder="Enter your mobile number" />
-        </p>
 
-         <p class="col-sm-2">
-            <label>DBS check</label>
-            <input type="date" asp-for="Tutor.DbsCheck" required="true" placeholder="Upload DBS here"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>Email</label>
+                    <input type="email" name="Email" required="true" placeholder="Enter your email address" />
+                </p>
 
-         <p class="col-sm-2">
-            <label>Degree</label>
-            <input type="submit" asp-for="Tutor.Degree" required="true" placeholder="Upload your degree(s) here"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>Mobile number</label>
+                    <input type="number" asp-for="Tutor.MobileNumber" required="true" placeholder="Enter your mobile number" />
+                </p>
 
-         <p class="col-sm-2">
-            <label>PGCE</label>
-            <input type="checkbox" asp-for="Tutor.PGCE" required="true" placeholder="Check your PGCE"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>DBS check</label>
+                    <input type="date" asp-for="Tutor.DbsCheck" required="true" placeholder="Upload DBS here" />
+                </p>
 
-         <p class="col-sm-2">
-            <label>Image</label>
-            <input type="image" asp-for="Tutor.ImageURL" required="true" placeholder="Upload an image of yourself here"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>Degree</label>
+                    <input type="submit" asp-for="Tutor.Degree" required="true" placeholder="Upload your degree(s) here" />
+                </p>
 
-         <p class="col-sm-2">
-            <label>Bio</label>
-            <input type="text" asp-for="Tutor.Bio" required="true" placeholder="Upload your degree(s) here"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>PGCE</label>
+                    <input type="checkbox" asp-for="Tutor.PGCE" required="true" placeholder="Check your PGCE" />
+                </p>
 
-         <p class="nav-item">
-            <label>Cost per hour</label>
-            <input type="number" asp-for="Tutor.Cost" required="true" placeholder="Enter your cost per hour here"/>
-        </p>
+                <p class="col-sm-2">
+                    <label>Image</label>
+                    <input type="image" asp-for="Tutor.ImageURL" required="true" placeholder="Upload an image of yourself here" />
+                </p>
 
-        <p class="col-sm-2">
-            <button type="submit" class="btn-btn-primary">
-                Register
-            </button>
-        </p>
-    </form>
+                <p class="col-sm-2">
+                    <label>Bio</label>
+                    <input type="text" asp-for="Tutor.Bio" required="true" placeholder="Upload your degree(s) here" />
+                </p>
+
+                <p class="nav-item">
+                    <label>Cost per hour</label>
+                    <input type="number" asp-for="Tutor.Cost" required="true" placeholder="Enter your cost per hour here" />
+                </p>
+
+                <p class="col-sm-2">
+                    <button type="submit" class="btn-btn-primary">
+                        Register
+                    </button>
+                </p>
+            </form>
 </div>
 
-<p class="col-sm-12">
-    @ViewData["Message"]
-</p>
+        <p class="col-sm-12">
+            @ViewData["Message"]
+        </p>
