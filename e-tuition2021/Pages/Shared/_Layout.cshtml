@@ -24,12 +24,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tutors">Tutors</a>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TutorSignIn">Tutor Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/TutorSignUp">Tutor Sign Up</a>
-                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -44,7 +38,13 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - E-Tuition - By Mohammed Ahmed, Hakeel Khan, Brandon Lim-Kee & Leo Juster - <a asp-area="" asp-page="/Tutors/Index">Tutors</a>
+            <p>
+                &copy; 2021 - E-Tuition - By Mohammed Ahmed, Hakeel Khan, Brandon Lim-Kee & Leo Juster - 
+            </p>
+            <p>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Tutors/Index">Tutor Portal</a>
+                <a class="nav-link text-dark" asp-area="" asp-page="/Staffs/Index">Staff Portal</a>
+            </p>
         </div>
     </footer>
 
