@@ -1,0 +1,55 @@
+﻿@page
+@model e_tuition2021.Pages.Timeslots.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TimeSlot</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TimeSlot.Id" />
+            <div class="form-group">
+                <label asp-for="TimeSlot.TutorId" class="control-label"></label>
+                <select asp-for="TimeSlot.TutorId" class="form-control" asp-items="ViewBag.TutorId"></select>
+                <span asp-validation-for="TimeSlot.TutorId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TimeSlot.Booked" /> @Html.DisplayNameFor(model => model.TimeSlot.Booked)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeSlot.DayOfTheWeek" class="control-label"></label>
+                <input asp-for="TimeSlot.DayOfTheWeek" class="form-control" />
+                <span asp-validation-for="TimeSlot.DayOfTheWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeSlot.StartHour" class="control-label"></label>
+                <input asp-for="TimeSlot.StartHour" class="form-control" />
+                <span asp-validation-for="TimeSlot.StartHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeSlot.EndHour" class="control-label"></label>
+                <input asp-for="TimeSlot.EndHour" class="form-control" />
+                <span asp-validation-for="TimeSlot.EndHour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
