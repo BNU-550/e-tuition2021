@@ -7,11 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using e_tuition2021.Data;
 using e_tuition2021.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace e_tuition2021.Pages.Staffs
+namespace e_tuition2021.Pages.Lessons
 {
-    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly e_tuition2021.Data.ApplicationDbContext _context;
@@ -21,13 +19,13 @@ namespace e_tuition2021.Pages.Staffs
             _context = context;
         }
 
-        public IList<Staff> Staff { get;set; }
+        public IList<Lesson> Lesson { get;set; }
 
         public async Task OnGetAsync()
         {
-            Staff = await _context.Staffs
-                .Include(s => s.Address)
-                .Include(s => s.PaymentCard).ToListAsync();
+            Lesson = await _context.Lessons
+                .Include(l => l.Student)
+                .Include(l => l.TimeSlot).ToListAsync();
         }
     }
 }

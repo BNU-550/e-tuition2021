@@ -1,0 +1,57 @@
+﻿@page
+@model e_tuition2021.Pages.Timeslots.IndexModel
+
+@{
+    ViewData["Title"] = "Timeslots";
+}
+
+<h1>Timeslots</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot[0].Booked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot[0].DayOfTheWeek)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot[0].StartHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot[0].EndHour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeSlot[0].Tutor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TimeSlot) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Booked)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayOfTheWeek)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartHour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndHour)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

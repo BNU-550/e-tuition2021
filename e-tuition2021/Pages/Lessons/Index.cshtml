@@ -1,0 +1,72 @@
+﻿@page
+@model e_tuition2021.Pages.Lessons.IndexModel
+
+@{
+    ViewData["Title"] = "Lessons";
+}
+
+<h1>Lessons</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].NoRepeat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].KeyStage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].FaceToFace)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].Online)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].TimeSlot)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lesson[0].Student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Lesson) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoRepeat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyStage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FaceToFace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Online)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeSlot.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.StudentName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.LessonId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.LessonId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.LessonId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

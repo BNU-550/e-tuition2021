@@ -2,14 +2,15 @@
 @model e_tuition2021.Pages.Tutors.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tutors";
 }
 
-<h1>Index</h1>
+<h1>Tutors</h1>
 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,9 +22,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tutor[0].PGCE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tutor[0].ImageURL)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tutor[0].Bio)
@@ -62,9 +60,6 @@
                 @Html.DisplayFor(modelItem => item.PGCE)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ImageURL)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Bio)
             </td>
             <td>
@@ -86,7 +81,7 @@
                 @Html.DisplayFor(modelItem => item.PaymentCard.CardNumber)
             </td>
             <td>
-                <a class="btn btn-success" asp-page="./Edit" asp-route-id="@item.PersonId">Edit</a> |
+                <a asp-page="./Edit" asp-route-id="@item.PersonId">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.PersonId">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.PersonId">Delete</a>
             </td>
@@ -94,3 +89,4 @@
 }
     </tbody>
 </table>
+
