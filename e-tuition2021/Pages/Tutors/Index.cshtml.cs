@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace e_tuition2021.Pages.Tutors
 {
-    [Authorize]
+    [Authorize(Roles ="Staff")]
     public class IndexModel : PageModel
     {
-        private readonly e_tuition2021.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(e_tuition2021.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
