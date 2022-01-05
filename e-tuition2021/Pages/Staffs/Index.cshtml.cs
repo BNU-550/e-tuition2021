@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using e_tuition2021.Data;
 using e_tuition2021.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace e_tuition2021.Pages.Staffs
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly e_tuition2021.Data.ApplicationDbContext _context;
