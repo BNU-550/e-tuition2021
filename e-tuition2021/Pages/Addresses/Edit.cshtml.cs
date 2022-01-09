@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using e_tuition2021.Data;
 using e_tuition2021.Models;
 
-namespace e_tuition2021.Pages.People
+namespace e_tuition2021.Pages.Addresses
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace e_tuition2021.Pages.People
         }
 
         [BindProperty]
-        public Person Person { get; set; }
+        public Address Address { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,16 +30,12 @@ namespace e_tuition2021.Pages.People
                 return NotFound();
             }
 
-            Person = await _context.People
-                .Include(p => p.Address)
-                .Include(p => p.PaymentCard).FirstOrDefaultAsync(m => m.PersonId == id);
+            Address = await _context.Addresses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Person == null)
+            if (Address == null)
             {
                 return NotFound();
             }
-           ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "HouseNumber");
-           ViewData["PaymentCardId"] = new SelectList(_context.PaymentCards, "Id", "CardNumber");
             return Page();
         }
 
@@ -52,7 +48,7 @@ namespace e_tuition2021.Pages.People
                 return Page();
             }
 
-            _context.Attach(Person).State = EntityState.Modified;
+            _context.Attach(Address).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +56,7 @@ namespace e_tuition2021.Pages.People
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PersonExists(Person.PersonId))
+                if (!AddressExists(Address.Id))
                 {
                     return NotFound();
                 }
@@ -70,12 +66,12 @@ namespace e_tuition2021.Pages.People
                 }
             }
 
-            return RedirectToPage("@ReturnPage.Name");
+            return RedirectToPage("./Index");
         }
 
-        private bool PersonExists(int id)
+        private bool AddressExists(int id)
         {
-            return _context.People.Any(e => e.PersonId == id);
+            return _context.Addresses.Any(e => e.Id == id);
         }
     }
 }

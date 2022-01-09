@@ -18,6 +18,8 @@ namespace e_tuition2021.Models
         [StringLength(20), Required, DisplayName("Mobile")]
         public string MobileNumber { get; set; }
 
+        public string Email { get; set; }
+
         public Nullable<int> AddressId { get; set; }
 
         public Nullable<int> PaymentCardId { get; set; }

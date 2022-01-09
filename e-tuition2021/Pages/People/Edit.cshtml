@@ -1,4 +1,5 @@
 ﻿@page
+@using e_tuition2021.Data
 @model e_tuition2021.Pages.People.EditModel
 
 @{
@@ -30,6 +31,11 @@
                 <span asp-validation-for="Person.MobileNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Person.Email" class="control-label"></label>
+                <input asp-for="Person.Email" class="form-control" />
+                <span asp-validation-for="Person.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Person.AddressId" class="control-label"></label>
                 <select asp-for="Person.AddressId" class="form-control" asp-items="ViewBag.AddressId"></select>
                 <span asp-validation-for="Person.AddressId" class="text-danger"></span>
@@ -47,7 +53,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="ReturnPage.Name">Back to List</a>
 </div>
 
 @section Scripts {

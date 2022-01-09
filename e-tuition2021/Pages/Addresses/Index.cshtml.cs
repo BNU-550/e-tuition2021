@@ -7,27 +7,23 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using e_tuition2021.Data;
 using e_tuition2021.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace e_tuition2021.Pages.Tutors
+namespace e_tuition2021.Pages.Addresses
 {
-    [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly e_tuition2021.Data.ApplicationDbContext _context;
 
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(e_tuition2021.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Tutor> Tutor { get;set; }
+        public IList<Address> Address { get;set; }
 
         public async Task OnGetAsync()
         {
-            Tutor = await _context.Tutors
-                .Include(t => t.Address)
-                .Include(t => t.PaymentCard).ToListAsync();
+            Address = await _context.Addresses.ToListAsync();
         }
     }
 }

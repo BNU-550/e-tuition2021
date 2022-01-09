@@ -23,6 +23,7 @@ namespace e_tuition2021.Pages.People
 
         public async Task OnGetAsync()
         {
+            ReturnPage.Name = ReturnPage.PEOPLE;
             Person = await _context.People
                 .Include(p => p.Address)
                 .Include(p => p.PaymentCard).ToListAsync();
