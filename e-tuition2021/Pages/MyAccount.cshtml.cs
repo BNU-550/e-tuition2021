@@ -9,9 +9,9 @@ namespace e_tuition2021.Pages
 {
     public class MyAccountModel : PageModel
     {
-        private readonly e_tuition2021.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public MyAccountModel(e_tuition2021.Data.ApplicationDbContext context)
+        public MyAccountModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,15 +24,16 @@ namespace e_tuition2021.Pages
 
             Person = await _context.People
                 .Include(p => p.Address)
-                .Include(p => p.PaymentCard).FirstOrDefaultAsync(m => m.Email == email);
+                .Include(p => p.PaymentCard)
+                .FirstOrDefaultAsync(m => m.Email == email);
+
+            ReturnPage.Name = ReturnPage.MY_ACCOUNT;
 
             if (Person == null)
             {
-                return NotFound();
+                return RedirectToPage("People/Create" );
             }
 
-            ReturnPage.Name = ReturnPage.MY_ACCOUNT;
-            
             return Page();
         }
     

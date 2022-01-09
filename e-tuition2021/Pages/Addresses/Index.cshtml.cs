@@ -12,9 +12,9 @@ namespace e_tuition2021.Pages.Addresses
 {
     public class IndexModel : PageModel
     {
-        private readonly e_tuition2021.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(e_tuition2021.Data.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -23,6 +23,7 @@ namespace e_tuition2021.Pages.Addresses
 
         public async Task OnGetAsync()
         {
+            ReturnPage.Name = ReturnPage.ADDRESSES;
             Address = await _context.Addresses.ToListAsync();
         }
     }

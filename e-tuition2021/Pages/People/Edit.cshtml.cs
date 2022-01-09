@@ -32,7 +32,8 @@ namespace e_tuition2021.Pages.People
 
             Person = await _context.People
                 .Include(p => p.Address)
-                .Include(p => p.PaymentCard).FirstOrDefaultAsync(m => m.PersonId == id);
+                .Include(p => p.PaymentCard)
+                .FirstOrDefaultAsync(m => m.PersonId == id);
 
             if (Person == null)
             {

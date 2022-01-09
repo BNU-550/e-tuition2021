@@ -8,6 +8,8 @@
 
         public const string PEOPLE = "People/Index";
 
+        public const string ADDRESSES = "Addresses/Index";
+
         public static string Name { get; set; }
     }
 }
