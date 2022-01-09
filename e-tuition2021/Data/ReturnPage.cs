@@ -6,7 +6,7 @@
 
         public const string MY_ACCOUNT = "/MyAccount";
 
-        public const string PEOPLE = "/People";
+        public const string PEOPLE = "People/Index";
 
         public static string Name { get; set; }
     }

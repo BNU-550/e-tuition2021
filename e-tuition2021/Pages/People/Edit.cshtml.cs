@@ -38,8 +38,10 @@ namespace e_tuition2021.Pages.People
             {
                 return NotFound();
             }
-           ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "HouseNumber");
-           ViewData["PaymentCardId"] = new SelectList(_context.PaymentCards, "Id", "CardNumber");
+           
+            ViewData["AddressId"] = new SelectList(_context.Addresses, "Id", "HouseNumber");
+            ViewData["PaymentCardId"] = new SelectList(_context.PaymentCards, "Id", "CardNumber");
+            
             return Page();
         }
 
@@ -70,7 +72,7 @@ namespace e_tuition2021.Pages.People
                 }
             }
 
-            return RedirectToPage("@ReturnPage.Name");
+            return RedirectToPage(ReturnPage.Name);
         }
 
         private bool PersonExists(int id)

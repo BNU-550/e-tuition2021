@@ -30,7 +30,9 @@ namespace e_tuition2021.Pages
             {
                 return NotFound();
             }
+
             ReturnPage.Name = ReturnPage.MY_ACCOUNT;
+            
             return Page();
         }
     

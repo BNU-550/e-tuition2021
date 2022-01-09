@@ -1,6 +1,6 @@
 ﻿@page
-@using e_tuition2021.Data
 @model e_tuition2021.Pages.People.EditModel
+@using e_tuition2021.Data
 
 @{
     ViewData["Title"] = "Edit";
@@ -53,7 +53,7 @@
 </div>
 
 <div>
-    <a asp-page="ReturnPage.Name">Back to List</a>
+    <a asp-page="@ReturnPage.Name">Back to List</a>
 </div>
 
 @section Scripts {
