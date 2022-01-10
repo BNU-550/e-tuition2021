@@ -8,26 +8,7 @@
 <div>
     <h2>Personal Details</h2>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Person.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Person.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Person.LastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Person.LastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Person.MobileNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Person.MobileNumber)
-        </dd>
-    </dl>
+    <partial name="People/_PersonView" model="Model.Person" />
 </div>
 <div>
     <a class="btn btn-success" asp-page="People/Edit" 

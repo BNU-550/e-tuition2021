@@ -16,8 +16,9 @@ namespace e_tuition2021.Pages
             _context = context;
         }
 
+        [BindProperty]
         public Person Person { get; set; }
-
+        
         public async Task<IActionResult> OnGetAsync()
         {
             string email = User.Identity.Name;
