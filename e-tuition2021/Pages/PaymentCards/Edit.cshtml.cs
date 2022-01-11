@@ -66,7 +66,7 @@ namespace e_tuition2021.Pages.PaymentCards
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage(ReturnPage.Name);
         }
 
         private bool PaymentCardExists(int id)
