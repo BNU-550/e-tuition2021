@@ -1,0 +1,49 @@
+﻿@model e_tuition2021.Models.Lesson
+
+
+<h4>Lesson</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NoRepeat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NoRepeat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.KeyStage)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KeyStage)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FaceToFace)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FaceToFace)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Online)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Online)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeSlot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TimeSlot.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Student)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.StudentName)
+        </dd>
+    </dl>

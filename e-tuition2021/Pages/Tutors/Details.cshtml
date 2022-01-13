@@ -1,4 +1,5 @@
 ﻿@page
+@using e_tuition2021.Models
 @model e_tuition2021.Pages.Tutors.DetailsModel
 
 @{
@@ -9,6 +10,22 @@
 </header>
 
 <partial name="_TutorView" model="Model.Tutor" />
+
+<h2>Booked Lessons</h2>
+@if (Model.Tutor.Lessons.Count == 0)
+{
+    <p>No lessons booked yet</p>
+}
+else
+{
+    @foreach(Lesson lesson in Model.Tutor.Lessons)
+{
+    <p>
+        Start hour:
+        @lesson.TimeSlot.StartHour
+    </p>
+}
+}
 
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Tutor.PersonId">Edit</a> |

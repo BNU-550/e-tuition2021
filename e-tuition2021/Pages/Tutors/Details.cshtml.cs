@@ -30,7 +30,10 @@ namespace e_tuition2021.Pages.Tutors
 
             Tutor = await _context.Tutors
                 .Include(t => t.Address)
-                .Include(t => t.PaymentCard).FirstOrDefaultAsync(m => m.PersonId == id);
+                .Include(t => t.PaymentCard)
+                .Include(t => t.Lessons)
+                .ThenInclude(t => t.TimeSlot)
+                .FirstOrDefaultAsync(m => m.PersonId == id);
 
             if (Tutor == null)
             {
